@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  kill-the-newsletter:
+    image: node:latest
+    container_name: kill-the-newsletter
+    working_dir: /app
+    ports:
+      - "8000:8000"
+      - "2525:2525"
+    command: npm start
+    stdin_open: true
+    tty: true
+    environment:
+      NODE_ENV: production
+      EMAIL_DOMAIN: "mydomain.tld"
+      ISSUE_REPORT: "mailto:error@mydomain.tld"
+      WEB_PORT: 8000
+      EMAIL_PORT: 2525
+      BASE_URL: "http://sub.mydomain.tld:8000"
+      TUNNEL: "sub.mydomain.tld"
+    build:
+      context: .
+      dockerfile: Dockerfile
