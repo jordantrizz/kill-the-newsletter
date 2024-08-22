@@ -8,17 +8,19 @@ services:
     ports:
       - "8000:8000"
       - "2525:2525"
+    volumes:
+      - /srv/kill-the-newsletter/certificates:/root/.local/share/caddy/certificates
     command: npm start
     stdin_open: true
     tty: true
     environment:
       NODE_ENV: production
-      EMAIL_DOMAIN: "mydomain.tld"
-      ISSUE_REPORT: "mailto:error@mydomain.tld"
+      EMAIL_DOMAIN: "ktn.unixmail.org"
+      ISSUE_REPORT: "mailto:j@unixmail.org"
       WEB_PORT: 8000
       EMAIL_PORT: 2525
-      BASE_URL: "http://sub.mydomain.tld:8000"
-      TUNNEL: "sub.mydomain.tld"
+      BASE_URL: "https://ktn.unixmail.org:8000"
+      TUNNEL: "ktn.unixmail.org"
     build:
       context: .
       dockerfile: Dockerfile
